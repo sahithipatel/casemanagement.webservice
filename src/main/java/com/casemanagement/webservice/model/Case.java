@@ -9,18 +9,25 @@ public class Case {
     private String status;
     private String assignedTo;
     private LocalDate createdDate;
+    private boolean flagged;
 
     public Case() {
     }
 
     public Case(String caseId, String title, String description, String status,
                 String assignedTo, LocalDate createdDate) {
+        this(caseId, title, description, status, assignedTo, createdDate, false);
+    }
+
+    public Case(String caseId, String title, String description, String status,
+                String assignedTo, LocalDate createdDate, boolean flagged) {
         this.caseId = caseId;
         this.title = title;
         this.description = description;
         this.status = status;
         this.assignedTo = assignedTo;
         this.createdDate = createdDate;
+        this.flagged = flagged;
     }
 
     public String getCaseId() {
@@ -69,5 +76,13 @@ public class Case {
 
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public boolean isFlagged() {
+        return flagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        this.flagged = flagged;
     }
 }

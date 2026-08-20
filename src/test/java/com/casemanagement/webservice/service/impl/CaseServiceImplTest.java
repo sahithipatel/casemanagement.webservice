@@ -47,6 +47,24 @@ class CaseServiceImplTest {
     }
 
     @Test
+    void testCreateCase_DefaultsFlaggedToFalse() {
+        Case unflagged = new Case("2", "Printer offline", "Office printer not responding",
+                "OPEN", "IBM", LocalDate.now());
+        when(caseRepository.save(any(Case.class))).thenReturn(unflagged);
+        caseService.createCase(unflagged);
+        assertThat(unflagged.isFlagged()).isFalse();
+    }
+
+    @Test
+    void testUpdateCase_CanSetFlagged() {
+        caseRecord.setFlagged(true);
+        when(caseRepository.existsById("1")).thenReturn(true);
+        when(caseRepository.save(caseRecord)).thenReturn(caseRecord);
+        caseService.updateCase(caseRecord);
+        assertThat(caseRecord.isFlagged()).isTrue();
+    }
+
+    @Test
     void testUpdateCase_Success() {
         when(caseRepository.existsById("1")).thenReturn(true);
         when(caseRepository.save(caseRecord)).thenReturn(caseRecord);
