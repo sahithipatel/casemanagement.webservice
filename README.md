@@ -38,7 +38,7 @@ POST | /cases | Add a new case
 PUT | /cases | Update existing case
 DELETE | /cases/{caseId} | Delete case by ID
 
-Case fields: caseId, title, description, status, assignedTo, createdDate. caseId and createdDate are auto-generated on create if omitted.
+Case fields: caseId, title, description, status, assignedTo, createdDate, flagged. caseId and createdDate are auto-generated on create if omitted; flagged defaults to false.
 
 Frontend integration
 CORS is enabled for `http://localhost:3000` and `http://localhost:5173` in `WebConfig`. Add your frontend's dev origin there if it runs elsewhere, and tighten `allowedOrigins` before deploying to production.
